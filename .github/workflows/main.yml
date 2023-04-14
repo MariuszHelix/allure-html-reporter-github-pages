@@ -49,42 +49,14 @@ jobs:
             state: 'success'
             sha: ${{ github.sha }}
             target_url: https://MariuszHelix.github.io/allure-html-reporter-github-pages/${{ github.run_number }}
-      - name: Send mail
-        uses: dawidd6/action-send-mail@v3
+      - name: Send email
+        uses: dawidd6/action-send-mail@v1.3.0
         with:
-          # Required mail server address:
           server_address: smtp.gmail.com
-          # Required mail server port:
           server_port: 465
-          # Optional (recommended): mail server username:
-          username: t08382157
-          # Optional (recommended) mail server password:
-          password: UC3-l"JTkHHR;<WEZj|Zw'~M[n}7^1QwH8:9{!cADaI_{5%$,(P!=eJN.*xr|z"#NxJD]d4|r2[ZuvDRaeMO9.nB*|^~-IC9jB(]
-          # Required mail subject:
-          subject: Github Actions job result
-          # Required recipients' addresses:
-          to: mariusz.klinkosz@codilime.com
-          # Required sender full name (address can be skipped):
-          from: Luke Skywalker # <user@example.com>
-          # Optional whether this connection use TLS (default is true if server_port is 465)
-          secure: true
-          # Optional plain body:
-          body: Build job of ${{github.repository}} completed successfully!
-          # Optional HTML body read from file:
-          #html_body: file://README.html
-          # Optional carbon copy recipients:
-          #cc: kyloren@example.com,leia@example.com
-          # Optional blind carbon copy recipients:
-          #bcc: r2d2@example.com,hansolo@example.com
-          # Optional recipient of the email response:
-          #reply_to: luke@example.com
-          # Optional Message ID this message is replying to:
-          #in_reply_to: <random-luke@example.com>
-          # Optional unsigned/invalid certificates allowance:
-          ignore_cert: true
-          # Optional converting Markdown to HTML (set content_type to text/html too):
-          convert_markdown: true
-          # Optional attachments:
-          # attachments: attachments.zip,git.diff,./dist/static/*.js
-          # Optional priority: 'high', 'normal' (default) or 'low'
-          priority: low
+          username: ${{ secrets.GMAIL_USER }}
+          password: ${{ secrets.GMAIL_PASS }}
+          subject: Your a star
+          body: ${{ github.actor }} just starred your mail-on-star repo!!! ${{ github.repository }}
+          to: ${{ secrets.GMAIL_ADDRESS }}
+          from: ${{ secrets.GMAIL_ADDRESS }}

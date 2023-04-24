@@ -1,9 +1,0 @@
-name: Node.js CI
-
-on:
-  repository_dispatch:
-  workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
